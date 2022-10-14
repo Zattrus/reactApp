@@ -25,7 +25,6 @@ export function Home() {
     async function fetchData() {
       const response = await fetch("https://api.github.com/users/Zattrus");
       const data = await response.json();
-      console.log("DADOS =>", data);
 
       setUser({
         name: data.name,
