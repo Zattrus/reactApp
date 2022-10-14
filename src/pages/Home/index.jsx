@@ -22,14 +22,18 @@ export function Home() {
   }
 
   useEffect(() => {
-    fetch("https://api.github.com/users/Zattrus")
-      .then((response) => response.json())
-      .then((data) => {
-        setUser({
-          name: data.name,
-          avatar: data.avatar_url,
-        });
+    async function fetchData() {
+      const response = await fetch("https://api.github.com/users/Zattrus");
+      const data = await response.json();
+      console.log("DADOS =>", data);
+
+      setUser({
+        name: data.name,
+        avatar: data.avatar_url,
       });
+    }
+
+    fetchData();
   }, []);
 
   return (
