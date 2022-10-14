@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
 
 import { Card } from "../../components/Card";
@@ -20,9 +20,19 @@ export function Home() {
     setStudents((prevState) => [...prevState, newStudent]);
   }
 
+  useEffect(() => {
+    console.log("useEffect foi chmado");
+  }, []);
+
   return (
     <div className="container">
-      <h1>Lista de Presença</h1>
+      <header>
+        <h1>Lista de Presença</h1>
+        <div>
+          <strong>Gabriel</strong>
+          <img src="https://github.com/Zattrus.png" alt="foto de perfil" />
+        </div>
+      </header>
 
       <input
         type="text"
@@ -35,7 +45,7 @@ export function Home() {
       </button>
 
       {students.map((student) => (
-        <Card name={student.name} time={student.time} />
+        <Card key={student.time} name={student.name} time={student.time} />
       ))}
     </div>
   );
